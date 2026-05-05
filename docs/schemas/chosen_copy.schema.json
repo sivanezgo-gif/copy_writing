@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChosenCopy",
+  "description": "Output of SKILL 3 (Copywriting). Consumed by SKILL 4.",
+  "type": "object",
+  "required": ["schema_version", "session_id", "headline", "language", "direction", "style", "rejected_alternatives"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "session_id": { "type": "string", "pattern": "^[0-9]{8}-[a-z0-9-]+$" },
+    "headline": { "type": "string", "minLength": 1 },
+    "language": { "type": "string", "enum": ["he", "en"] },
+    "direction": { "type": "string", "enum": ["rtl", "ltr"] },
+    "style": { "type": "string", "enum": ["direct", "emotional", "adventurous"] },
+    "rejected_alternatives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 0,
+      "maxItems": 2
+    }
+  }
+}

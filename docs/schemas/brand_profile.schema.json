@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BrandProfile",
+  "description": "Output of SKILL 1 (Brand Intelligence). Consumed by SKILLs 2, 3, 4.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "session_id",
+    "business_name",
+    "business_slug",
+    "language",
+    "direction",
+    "colors",
+    "fonts",
+    "logo",
+    "research_sources",
+    "background_proposal"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "session_id": { "type": "string", "pattern": "^[0-9]{8}-[a-z0-9-]+$" },
+    "business_name": { "type": "string", "minLength": 1 },
+    "business_slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "business_type": { "type": ["string", "null"] },
+    "language": { "type": "string", "enum": ["he", "en", "other"] },
+    "direction": { "type": "string", "enum": ["rtl", "ltr"] },
+    "colors": {
+      "type": "object",
+      "required": ["primary", "extraction_method", "needs_user_confirmation"],
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "secondary": {
+          "oneOf": [
+            { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            { "type": "null" }
+          ]
+        },
+        "background_suggestion": {
+          "oneOf": [
+            { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            { "type": "null" }
+          ]
+        },
+        "extraction_method": {
+          "type": "string",
+          "enum": ["colorthief_og", "colorthief_logo", "meta_theme", "manual"]
+        },
+        "needs_user_confirmation": { "type": "boolean" }
+      }
+    },
+    "fonts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tone": { "type": ["string", "null"] },
+    "target_audience": { "type": ["string", "null"] },
+    "logo": {
+      "type": "object",
+      "required": ["found", "skipped", "generated", "fallback_used"],
+      "properties": {
+        "found": { "type": "boolean" },
+        "source_url": { "type": ["string", "null"] },
+        "local_path": { "type": ["string", "null"] },
+        "format": { "type": ["string", "null"], "enum": ["svg", "png", "jpg", null] },
+        "dimensions": {
+          "oneOf": [
+            { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+            { "type": "null" }
+          ]
+        },
+        "fallback_used": { "type": "boolean" },
+        "generated": { "type": "boolean" },
+        "skipped": { "type": "boolean" },
+        "canva_asset_id": { "type": ["string", "null"] }
+      }
+    },
+    "research_sources": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["website", "facebook", "instagram", "manual"] },
+      "minItems": 1
+    },
+    "background_proposal": {
+      "type": "object",
+      "required": ["type", "description"],
+      "properties": {
+        "type": { "type": "string", "enum": ["image", "gradient", "solid"] },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}
