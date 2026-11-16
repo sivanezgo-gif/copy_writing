@@ -24,7 +24,7 @@ body{font-family:'Heebo',sans-serif;color:var(--text);background:var(--navy);ove
   -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 45%);mask-image:linear-gradient(180deg,#000 0%,transparent 45%)}
 
 .top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:34px 52px 0}
-.logo{height:40px}
+.logo-wrap{background:#fff;border-radius:12px;padding:6px 12px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:flex}.logo{height:40px;display:block}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 14px;border-radius:999px;
   background:rgba(255,181,71,.14);border:1px solid rgba(255,181,71,.55);color:var(--warm);font-weight:700;font-size:15px;letter-spacing:.2px}
 .badge i{width:8px;height:8px;border-radius:50%;background:var(--warm);box-shadow:0 0 0 4px rgba(255,181,71,.25)}
@@ -87,7 +87,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(270deg,rgba(12
 
   <div class="top">
     <span class="badge"><i></i>חדש באיזיגו</span>
-    <img class="logo" src="logo_t.png" alt="ezgo TravelTech">
+    <span class="logo-wrap"><img class="logo" src="logo.png" alt="ezgo"></span>
   </div>
 
   <div class="hero">
